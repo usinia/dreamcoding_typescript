@@ -1,33 +1,26 @@
-/* 2.10 Union Type */
+/* 2.11 필수 타입 Discriminated Union */
 {
-  /**
-   * Union Types: OR
-   */
-  type Direction = "left" | "righht" | "up" | "down";
-  function move(direction: Direction) {
-    console.log(direction);
-  }
-  move("down");
-
-  type TileSize = 8 | 16 | 32;
-  const tile: TileSize = 16;
-
   // function: login -> success, fail
   type SuccessState = {
+    result: "success";
     response: {
       body: string;
     };
   };
   type FaileState = {
+    result: "fail";
     reason: string;
   };
   type LoginState = SuccessState | FaileState;
   function login(id: string, password: string): Promise<LoginState> {
     return new Promise((resolve, reject) => {
       resolve({
+        result: "success",
         response: {
           body: "loggedd in!",
         },
+        // result: "fail",
+        // reason: "fail",
       });
     });
   }
@@ -36,7 +29,7 @@
   // success -> 🎉 body
   // faile -> 😭 reason
   function printLoginState(state: LoginState): void {
-    if ("response" in state) {
+    if (state.result === "success") {
       console.log(`🎉 ${state.response.body}`);
     } else {
       console.log(`😭 ${state.reason}`);
