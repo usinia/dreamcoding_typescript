@@ -1,7 +1,7 @@
 {
   type CoffeeCup = {
     shots: number;
-    hasMilk: false;
+    hasMilk: boolean;
   };
 
   const BEANS_CRAMM_PER_SHOT: number = 7;
