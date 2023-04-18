@@ -41,3 +41,27 @@ afterPayUsinia.pay(); // workFullTime 를 잃어버림
 afterPayEllie.workPartTime();
 
 // const test = pay(13); // error occurred
+
+const obj = {
+  name: "usinia",
+  age: 20,
+};
+
+const obj2 = {
+  animal: "🐶",
+};
+
+/**
+ * *** 별표 백개 ***
+ * 처음 인자는 제네릭 T 야
+ * 두번째 인자는 제네릭 K 인데 이건 T 의 키 값이야
+ * 리턴하는 값은 제네릭인데 T에서 K 키가 가진 값이야
+ */
+function getValue<T, K extends keyof T>(obj: T, key: K): T[K] {
+  return obj[key];
+}
+
+console.log(getValue(obj, "name"));
+// console.log(getValue(obj, "score")); // error occurred
+console.log(getValue(obj, "age"));
+console.log(getValue(obj2, "animal"));
