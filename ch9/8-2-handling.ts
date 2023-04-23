@@ -1,7 +1,10 @@
 {
+  class TimeoutError extends Error {}
+  class OfflineError extends Error {}
+
   class NetworkClient {
     tryConnect(): void {
-      throw new Error("no network!!!");
+      throw new OfflineError("no network!!!");
     }
   }
 
@@ -25,6 +28,7 @@
       try {
         this.userService.login();
       } catch (error) {
+        // any type 이기 때문에 error instanceOf OfflineError 형식으로 사용할 수 없음
         //show dialog to user
         console.log("error occurred...");
         console.log("show dialog to user");
