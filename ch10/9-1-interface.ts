@@ -1,4 +1,8 @@
 {
+  /**
+   * Interface : 규격사항, 서로간에 상호작용을 위한 계약서. 구현사항에 대한 약속
+   * Types : 데이터의 모습, 타입
+   */
   type PositionType = {
     x: number;
     y: number;
