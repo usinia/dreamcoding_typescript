@@ -135,7 +135,7 @@ class App {
       (input: MediaSectionInput) => new ImageComponent(input.title, input.url)
     );
     this.bindElementToDialog<MediaSectionInput>(
-      "#new-vedio",
+      "#new-video",
       MediaSectionInput,
       (input: MediaSectionInput) => new VideoComponent(input.title, input.url)
     );

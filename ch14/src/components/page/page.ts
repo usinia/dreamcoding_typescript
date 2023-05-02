@@ -21,11 +21,10 @@ export class PageItemComponent
   private closeListener?: OnCloseListener;
   constructor() {
     super(`<li class="page-item">
-             <section class="page-item__body">
-               <div class="page-item__controls">
-                 <button class="close">&times;</button>
-               </div>
-             </section>
+             <section class="page-item__body"></section>
+             <div class="page-item__controls">
+               <button class="close">&times;</button>
+             </div>
            </li>`);
 
     const closeBtn = this.element.querySelector(".close")! as HTMLButtonElement;
@@ -51,10 +50,10 @@ export class PageComponent
   constructor(private pageItemConstructor: SectionContainerConstructor) {
     super(`<ul class="page"></ul>`);
   }
-  addChild(child: Component): void {
+  addChild(section: Component): void {
     // const item = new PageItemComponent();
     const item = new this.pageItemConstructor();
-    item.addChild(child);
+    item.addChild(section);
     item.attachTo(this.element, "beforeend");
     item.setOnCloseListener(() => {
       item.removeFrom(this.element);
