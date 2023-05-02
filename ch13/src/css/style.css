@@ -1,0 +1,128 @@
+body {
+  background-image: url("../assets/background.png");
+  height: 100vh;
+  margin: 0;
+}
+
+.header {
+  background: rgba(0, 0, 0, 0.8);
+  color: red;
+  text-align: center;
+  padding: 20px;
+  height: 75px;
+}
+
+.header > div {
+  font-size: 25px;
+  font-weight: bold;
+  margin: 5px;
+}
+
+.header div > div {
+  display: inline;
+  background: red;
+  color: white;
+  padding: 5px 15px;
+  margin: 3px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* popup */
+.popup {
+  display: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.dim {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.8;
+}
+
+.layer {
+  position: relative;
+  top: 15%;
+  left: 15%;
+  width: 70%;
+  background: #323131;
+  z-index: 1;
+  color: #fff;
+  padding: 15px 10px 5px;
+  border-radius: 5px;
+}
+
+.layer div {
+  padding: 3px 0;
+}
+
+.layer .close {
+  text-align: right;
+  color: red;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.layer .close span {
+  cursor: pointer;
+}
+
+.layer .title div {
+  padding: 5px 0;
+}
+
+.layer .title input {
+  width: 98%;
+  background: gray;
+  color: white;
+  padding: 3px;
+  margin: 3px 0;
+}
+
+.layer .title .btn-add {
+  text-align: right;
+}
+
+.layer .title .btn-add span {
+  background: red;
+  padding: 5px 10px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* popup */
+
+.list {
+  min-height: 200px;
+  height: calc(100vh - 140px);
+  background-color: gray;
+  overflow-y: auto;
+}
+
+.list::-webkit-scrollbar {
+  width: 5px;
+}
+.list::-webkit-scrollbar-thumb {
+  background-color: red;
+}
+.list::-webkit-scrollbar-track {
+  background-color: rgb(74, 74, 74);
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  background: black;
+  color: white;
+  width: 100%;
+  height: 25px;
+  padding-top: 3px;
+  text-align: center;
+}
