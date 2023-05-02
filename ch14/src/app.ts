@@ -9,50 +9,117 @@ import {
   PageItemComponent,
 } from "./components/page/page.js";
 import { Component } from "./components/component.js";
+import { MediaSectionInput } from "./components/dialog/input/media-input.js";
+import { TextSectionInput } from "./components/dialog/input/text-input.js";
 
 class App {
   private readonly page: Component & Composable;
-  constructor(appRoot: HTMLElement) {
+  constructor(appRoot: HTMLElement, root: HTMLElement) {
+    // --- 1. 페이지 생성
     this.page = new PageComponent(PageItemComponent);
     this.page.attachTo(appRoot);
 
-    const image = new ImageComponent(
-      "Image Title",
-      "https://picsum.photos/600/300"
-    );
-    // image.attachTo(appRoot, "beforeend");
-    this.page.addChild(image);
+    // // --- 2. 아이템 추가
+    // const image = new ImageComponent(
+    //   "Image Title",
+    //   "https://picsum.photos/600/300"
+    // );
+    // // image.attachTo(appRoot, "beforeend");
+    // this.page.addChild(image);
 
-    const video = new VideoComponent(
-      "video",
-      "https://www.youtube.com/watch?v=F7PN-1EmJbI"
-    );
-    // video.attachTo(appRoot, "beforeend");
-    this.page.addChild(video);
+    // const video = new VideoComponent(
+    //   "video",
+    //   "https://www.youtube.com/watch?v=F7PN-1EmJbI"
+    // );
+    // // video.attachTo(appRoot, "beforeend");
+    // this.page.addChild(video);
 
-    const note = new NoteComponent("note", "notebody");
-    // note.attachTo(appRoot, "beforeend");
-    this.page.addChild(note);
+    // const note = new NoteComponent("note", "notebody");
+    // // note.attachTo(appRoot, "beforeend");
+    // this.page.addChild(note);
 
-    const todo = new TodoComponent("todo", "must todo");
-    // todo.attachTo(appRoot, "beforeend");
-    this.page.addChild(todo);
+    // const todo = new TodoComponent("todo", "must todo");
+    // // todo.attachTo(appRoot, "beforeend");
+    // this.page.addChild(todo);
 
+    // --- 3. 버튼 다이어로그 생성
     // button dialog
     const imageBtn = document.querySelector("#new-image")! as HTMLButtonElement;
     imageBtn.addEventListener("click", () => {
       const dialog = new InputDialog();
+      const inputSection = new MediaSectionInput();
+
+      dialog.addChild(inputSection);
+      dialog.attachTo(root);
+
       dialog.setOnCloseListener(() => {
-        dialog.removeFrom(document.body);
+        dialog.removeFrom(root);
       });
       dialog.setOnSubmitListener(() => {
         // 섹션을 만들어서 페이지에 추가
-        dialog.removeFrom(document.body);
+        const image = new ImageComponent(inputSection.title, inputSection.url);
+        this.page.addChild(image);
+        dialog.removeFrom(root);
       });
+    });
 
-      dialog.attachTo(document.body);
+    const videoBtn = document.querySelector("#new-video")! as HTMLButtonElement;
+    videoBtn.addEventListener("click", () => {
+      const dialog = new InputDialog();
+      const inputSection = new MediaSectionInput();
+
+      dialog.addChild(inputSection);
+      dialog.attachTo(root);
+
+      dialog.setOnCloseListener(() => {
+        dialog.removeFrom(root);
+      });
+      dialog.setOnSubmitListener(() => {
+        // 섹션을 만들어서 페이지에 추가
+        const video = new VideoComponent(inputSection.title, inputSection.url);
+        this.page.addChild(video);
+        dialog.removeFrom(root);
+      });
+    });
+
+    const noteBtn = document.querySelector("#new-note")! as HTMLButtonElement;
+    noteBtn.addEventListener("click", () => {
+      const dialog = new InputDialog();
+      const inputSection = new TextSectionInput();
+
+      dialog.addChild(inputSection);
+      dialog.attachTo(root);
+
+      dialog.setOnCloseListener(() => {
+        dialog.removeFrom(root);
+      });
+      dialog.setOnSubmitListener(() => {
+        // 섹션을 만들어서 페이지에 추가
+        const note = new NoteComponent(inputSection.title, inputSection.body);
+        this.page.addChild(note);
+        dialog.removeFrom(root);
+      });
+    });
+
+    const todoBtn = document.querySelector("#new-todo")! as HTMLButtonElement;
+    todoBtn.addEventListener("click", () => {
+      const dialog = new InputDialog();
+      const inputSection = new TextSectionInput();
+
+      dialog.addChild(inputSection);
+      dialog.attachTo(root);
+
+      dialog.setOnCloseListener(() => {
+        dialog.removeFrom(root);
+      });
+      dialog.setOnSubmitListener(() => {
+        // 섹션을 만들어서 페이지에 추가
+        const todo = new TodoComponent(inputSection.title, inputSection.body);
+        this.page.addChild(todo);
+        dialog.removeFrom(root);
+      });
     });
   }
 }
 
-new App(document.querySelector(".document")! as HTMLElement);
+new App(document.querySelector(".document")! as HTMLElement, document.body);
