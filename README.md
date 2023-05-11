@@ -1,4 +1,7 @@
 # dreamcoding_typescript
+드림코딩 타입스크립트 객체지향 프로그래밍 (https://academy.dream-coding.com/courses/typescript)
+
+---
 
 ## 강의 커리큘럼
 0. 소개
